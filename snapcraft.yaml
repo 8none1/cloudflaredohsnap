@@ -1,4 +1,4 @@
-name: cloudflared
+name: cloudflaredoh
 version: git
 summary: DNS over HTTPS proxy to Cloudflare's DNS servers
 description: |
