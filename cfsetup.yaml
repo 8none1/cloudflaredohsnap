@@ -1,0 +1,95 @@
+pinned_go: &pinned_go go=1.11.5-1
+build_dir: &build_dir /cfsetup_build/src/github.com/cloudflare/cloudflared/
+default-flavor: stretch
+stretch: &stretch
+  build:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - build-essential
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=amd64
+      - make cloudflared
+  build-deb:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - build-essential
+      - fakeroot
+      - rubygem-fpm
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=amd64
+      - make cloudflared-deb
+  release-linux-amd64:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - build-essential
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=amd64
+      - make release
+  release-linux-armv6:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - crossbuild-essential-armhf
+      - gcc-arm-linux-gnueabihf
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=arm
+      - export CC=arm-linux-gnueabihf-gcc
+      - make release
+  release-linux-386:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - gcc-multilib
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=386
+      - make release
+  release-windows-amd64:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - gcc-mingw-w64
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=windows
+      - export GOARCH=amd64
+      - export CC=x86_64-w64-mingw32-gcc
+      - make release
+  release-windows-386:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - gcc-mingw-w64
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=windows
+      - export GOARCH=386
+      - export CC=i686-w64-mingw32-gcc-win32
+      - make release
+  test:
+    build_dir: *build_dir
+    builddeps:
+      - *pinned_go
+      - build-essential
+    post-cache:
+      - export GOPATH=/cfsetup_build/
+      - export GOOS=linux
+      - export GOARCH=amd64
+      - sudo chown -R $(whoami) /cfsetup_build/
+      - go get github.com/BurntSushi/go-sumtype
+      - export PATH="$GOPATH/bin:$PATH"
+      - make test
+
+jessie: *stretch

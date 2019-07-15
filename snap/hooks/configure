@@ -1,0 +1,34 @@
+#!/bin/bash
+
+OPTIONS_DIR="$SNAP_DATA/options"
+
+port="$(snapctl get port)"
+address="$(snapctl get address)"
+
+echo "here 1"
+
+if [ -z "$port" ]; then
+  echo "Using default port of 5053"
+  port=5053
+fi
+
+echo "here 2"
+
+if [ -z "$address" ]; then 
+  echo "Using default address of 127.0.0.1"
+  address=127.0.0.1
+fi
+
+echo "Hello, I am the configure script!  You can probably delete this line now"
+echo $SNAP_DATA
+
+#mkdir -m 0600 $OPTIONS_DIR
+mkdir $OPTIONS_DIR
+#stat $OPTIONS_DIR
+#touch $OPTIONS_DIR/config
+
+echo $address > $OPTIONS_DIR/ipaddress
+echo $port > $OPTIONS_DIR/port
+
+exit 0
+

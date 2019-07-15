@@ -1,0 +1,183 @@
+2019.7.0
+- 2019-05-28 TUN-1913: Define OriginService for each type of origin
+- 2019-04-29 Build a docker container
+- 2019-06-12 TUN-1952: Group ClientConfig fields by the component that uses the config, and return the part of the config that failed to be applied
+- 2019-06-05 TUN-1893: Proxy requests to the origin based on tunnel hostname
+- 2019-06-17 TUN-1961: Create EdgeConnectionManager to maintain outbound connections to the edge
+- 2019-06-18 TUN-1885: Reconfigure cloudflared on receiving new ClientConfig
+- 2019-06-19 TUN-1976: Pass tunnel hostname through header
+- 2019-06-20 TUN-1982: Load custom origin CA when OriginCAPool is specified
+- 2019-06-26 TUN-2005: Upgrade logrus
+- 2019-06-20 TUN-1981: Write response header & body on proxy error to notify eyeballs of failure category
+- 2019-06-20 TUN-1977: Validate OriginConfig has valid URL, and use scheme to determine if a HTTPOriginService is expecting HTTP or Unix
+- 2019-06-13 DoH: change the media type to application/dns-message
+- 2019-06-26 AUTH-1736: Better handling of token revocation
+
+2019.6.0
+- 2019-05-17 TUN-1828: Update declarative tunnel config struct
+- 2019-05-29 Handle exit code on err
+- 2019-05-29 AUTH-1802: Fixed ssh-config templating
+- 2019-05-30 TUN-1914: Conflate HTTP and Unix OriginConfig, and add TLS config to WebSocketOriginConfig
+- 2019-06-03 AUTH-1811: ssh-gen config fixes
+
+2019.5.0
+- 2019-04-25 TUN-1781: ServeStream should return early on error
+- 2019-04-30 TUN-1786: Remove low-level Windows service logging
+- 2019-05-03 TUN-1807: Send cloudflared version in Connect RPC
+- 2019-01-23 AUTH-1557: Short Lived Certs
+- 2019-05-13 TUN-1847: Log a distinct message when OpenStream fails while waiting for response headers
+- 2019-05-13 AUTH-1706: fixes and testing
+- 2019-05-22 TUN-1880: Save debug and warn level log to logfile
+- 2019-05-22 AUTH-1781: fixed race condition for short lived certs, doc required config
+
+2019.4.1
+- 2019-03-18 TUN-1626: Create new supervisor to establish connection with origintunneld
+- 2019-04-04 TUN-1619: Add flag to test declarative tunnels.
+- 2019-04-05 TUN-1577: decompose carrier.StartServer to make TestStartServer less flappy
+- 2019-03-29 TUN-1606: Define CloudflaredConfig RPC structure, interface for cloudflared's RPC server
+- 2019-04-02 TUN-1682: Add context to OpenStream to prevent it from blocking indefinitely.
+- 2019-04-16 TUN-1732: cloudflared metrics should track userHostnames
+- 2019-04-17 TUN-1734: Pin packages at exact versions
+- 2019-04-18 TUN-1669: Update license message in help text. Also fix test
+
+2019.4.0
+- 2019-03-28 TUN-1648: ConnectionID is now a UUID
+- 2019-04-01 TUN-1673: Conflate Hello and Connect RPCs
+
+2019.3.2
+- 2019-03-22 TUN-1637: Free tunnels shouldn't require cert.pem
+- 2019-03-18 TUN-1604: Define Connect RPC call
+
+2019.3.1
+- 2019-03-09 Add rdp as a supported protocol in URL validation (#76)
+- 2019-03-15 TUN-1613: improved cloudflared RegisterTunnel fail metrics
+- 2019-03-17 TUN-1615: revert miekg/dns to last known working revision
+
+2019.3.0
+- 2018-12-28 make http transport aware of proxy from envvar
+- 2019-02-28 TUN-1559: fix nil dereference in TunnelConfig.CloseConnOnce
+- 2019-03-04 TUN-1451: Make non-interactive, non-service execution possible on Windows
+- 2019-03-04 TUN-1562: Refactor connectedSignal to be safe to close multiple times
+- 2019-02-27 TUN-1550: Add validation timeout for non-responsive origins
+- 2019-03-06 AUTH-1531: Named flags for ssh service tokens
+- 2019-02-14 Support unix sockets.
+- 2019-03-08 TUN-1389: Non-scalar flags in a cloudflared config.yml don't get logged
+- 2019-03-07 TUN-1522: If we can't get SRV from default resolver, get them from 1.1.1.1 DoT
+
+2019.2.1
+- 2019-02-14 TUN-1381:  should tell you if you're on the latest version rather than just exiting silently
+- 2019-02-15 TUN-1467: build with Go 1.11
+- 2019-02-15 AUTH-1519: Added logging
+- 2019-02-19 TUN-1525: cloudflared metrics for registration success/fail
+- 2019-02-19 TUN-1510: Wrap the close() in sync.Once.Do
+
+2019.2.0
+- 2019-01-24 AUTH-1462: better curl arg parsing
+- 2019-02-01 TUN-1456: Only make one UUID
+- 2019-01-30 cloudflared/linux_service: Add missing /etc/init.d shebang
+- 2019-02-07 AUTH-1511: Add custom headers for ssh command
+- 2019-02-01 AUTH-1503: Added RDP support
+- 2019-02-01 AUTH-1403: Print the paths in the ssh-config instructions
+
+2019.1.0
+- 2018-12-10 TUN-1231: Horizontal overflow wrapping on the Hello page
+- 2018-12-17 TUN-1140: Show usage if invoked with no args or config
+- 2018-11-06 TUN-632 Filter out common network exceptions from going to Sentry on StartServer
+- 2019-01-07 TUN-1138: Install cloudflared service directory with 755 permissions
+- 2019-01-07 TUN-1265: Silent exit when failing to parse config
+- 2019-01-10 TUN-1350: Enhance error messages with cloudflarestatus.com link, if relevant
+- 2019-01-16 TUN-1358: Close readyList after Muxer.Serve() has stopped running
+- 2019-01-24 AUTH-1423: move from stdout to stderr
+- 2019-01-24 AUTH-1404: reauth if the token is about to expire within 15 minutes
+- 2019-01-24 AUTH-1459: improved ssh streaming error message
+- 2019-01-24 AUTH-1211: print all the versions
+- 2019-01-24 AUTH-1337: fix url path
+- 2019-01-28 TUN-1418: Rename ProtocolLogger to TransportLogger, and use TransportLogger to log RPC events.
+- 2019-01-28 TUN-1419: Identify request/response headers/content length with ray ID
+
+2018.12.1
+- 2018-12-11 TUN-1270: cloudflared panic (HA metrics missing label)
+
+2018.12.0
+- 2018-11-15 TUN-1196: Allow TLS config client CA and root CA to be constructed from multiple certificates
+- 2018-11-20 TUN-1209: TLS Config Certificates and GetCertificate can both be set
+- 2018-11-26 TUN-1212: Expose tunnel_id in metrics
+- 2018-11-30 TUN-1204: remove 'cloudflared hello' command
+- 2018-12-04 Fix license URL typo
+- 2018-12-07 TUN-1250: ValidateHTTPService shouldn't follow 302s
+
+2018.11.0
+- 2018-10-31 AUTH-1282: Fixed an issue where we were receiving as opposed sending on the channel.
+- 2018-11-06 TUN-1179: Fix log message in cmd/cloudflared/transfer.Run
+- 2018-11-13 AUTH-1308: get jwt even when you are already logged in
+- 2018-11-12 TUN-1190: check URL parse error when starting SSH proxy server
+- 2018-11-15 AUTH-1320: Fixed request issue and unhide the ssh command
+
+2018.10.5
+- 2018-10-18 TUN-968: Flow control for large requests/responses
+- 2018-10-26 TUN-1158: Windows: use process arguments rather than trivial service arguments
+- 2018-10-20 #30: Fix the Content-Length header for HTTP2->HTTP1
+- 2018-10-29 TUN-1160: pass Host header during origin url validation
+
+2018.10.4
+- 2018-09-21 AUTH-1070: added SSH/protocol forwarding
+- 2018-10-19 AUTH-1235: fixed packaging of deb dev file
+- 2018-10-19 TUN-1097: Host missing from WebSocket request
+- 2018-10-19 AUTH-1188: UX Review and Changes for CLI SSH Access
+
+2018.10.3
+- 2018-10-08 TUN-1099: Bring back changes in 2018.10.1
+- 2018-10-08 TUN-1098: removed deprecation error
+- 2018-10-08 TUN-1101: False negatives in Cloudflared error reporting
+
+2018.10.2
+- 2018-10-06 TUN-1093: Revert cloudflared to 2018.8.0
+
+2018.10.1
+- 2018-10-03 TUN-1012: Normalize config filename for Linux services
+- 2018-10-05 TUN-1081: cloudflared now generates UUIDs
+- 2018-10-05 TUN-1083: fixed incorrect help menu
+- 2018-10-05 TUN-1086: fixed config option
+
+2018.10.0
+- 2018-08-15 AUTH-910, AUTH-1049, AUTH-1068, AUTH-1056: Generate and store Access tokens with E2EE option, curl/cmd wrapper
+- 2018-09-11 TUN-890: To support free tunnels, hostname can now be ""
+- 2018-09-12 TUN-810: Cloudflared should open dash/argotunnel not dash/warp
+- 2018-09-12 TUN-985: Don't display tunnel ID if it's empty string
+- 2018-09-11 TUN-881: Display trial zone URL upon successful registration
+- 2018-09-11 TUN-868: HTTP/HTTPS mismatch should have a better error message
+- 2018-09-19 TUN-1028: Unhide cloudflared compression flag
+- 2018-09-20 AUTH-1139: refactored cloudflared help menu
+- 2018-09-20 TUN-1035: New text for cloudflared tunnel --help
+- 2018-09-18 AUTH-1136: addressing beta feedback
+- 2018-09-26 AUTH-1165: hide access command
+- 2018-09-26 TUN-1046: Document that delta compression is a beta feature
+- 2018-09-28 TUN-1056: Lint error broke build
+- 2018-09-27 TUN-1052: Origintunneld can send back an Origincert to Cloudflared
+- 2018-09-28 TUN-1052: Changing type of OriginCert to :Data
+- 2018-10-01 TUN-1062: Makefile target for regenerating Capn Proto definitions
+- 2018-10-02 TUN-1064: Revert OriginCert capnp changes in Cloudflared. Reverts commits a1ee2342e97 and 8c756c45785.
+- 2018-10-03 TUN-1076: Pin capnproto2 to version 2.17.1
+- 2018-10-03 AUTH-1199: unhide access command, added beta label
+
+2018.8.0
+- 2018-05-01 Initial commit
+- 2018-05-03 TUN-595: Add License/Readme files to cloudflared
+- 2018-05-01 TUN-528: Move cloudflared into a separate repo
+- 2018-07-24 TUN-813: Clean up cloudflared dependencies
+- 2018-07-25 TUN-814: Handle error in CreateTLSListener before closing listener
+- 2018-07-24 TUN-804: create Makefile recipe to build cloudflared and run tests
+- 2018-07-26 TUN-817: Increase the log time precision
+- 2018-07-30 TUN-828: Added Connection: keep-alive header
+- 2018-07-30 TUN-829: prefer p256 curve
+- 2018-07-31 TUN-834: Enable tracing on cloudflared
+- 2018-08-07 TUN-820: Fix caddyfile gitignore
+- 2018-07-25 TUN-804: create make recipe for building deb package
+- 2018-08-07 TUN-861: Disable cloudflared tracing by default; preserve the latest tracefile
+- 2018-08-07 TUN-857: Pull the brotli-go dependency from Github
+- 2018-08-14 TUN-897: Bring back missing Brotli files
+- 2018-07-26 TUN-804: create makefile recipe to release cloudflared using equinox
+- 2018-08-15 TUN-901: makefile target for homebrew release
+- 2018-07-30 TUN-801: Rapid SQL Proxy
+- 2018-08-27 TUN-833: Don't log system root certificate loading failure on Windows
+
